@@ -103,16 +103,45 @@ header { position:relative; z-index:10; padding:18px 32px; display:flex; align-i
 ::-webkit-scrollbar { width:5px; }
 ::-webkit-scrollbar-track { background:transparent; }
 ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+
+/* DRAWER */
+.drawer-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.6); backdrop-filter:blur(6px); z-index:200; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+.drawer-overlay.open { opacity:1; pointer-events:all; }
+.drawer { position:fixed; top:0; right:0; height:100vh; width:480px; max-width:95vw; background:var(--surface); border-left:1px solid var(--border); z-index:201; transform:translateX(100%); transition:transform 0.3s cubic-bezier(0.16,1,0.3,1); display:flex; flex-direction:column; }
+.drawer-overlay.open .drawer { transform:translateX(0); }
+.drawer-header { padding:22px 24px 18px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+.drawer-title { font-family:'Syne',sans-serif; font-size:18px; font-weight:700; letter-spacing:-0.3px; }
+.drawer-close { background:var(--surface2); border:1px solid var(--border); color:var(--text-muted); width:30px; height:30px; border-radius:7px; cursor:pointer; font-size:15px; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
+.drawer-close:hover { color:var(--text); border-color:var(--text-muted); }
+.drawer-body { padding:24px; overflow-y:auto; flex:1; display:flex; flex-direction:column; gap:18px; }
+.drawer-footer { padding:16px 24px; border-top:1px solid var(--border); flex-shrink:0; display:flex; gap:10px; align-items:center; }
+.form-group { display:flex; flex-direction:column; gap:7px; }
+.form-label { font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); }
+.form-input, .form-select, .form-textarea { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 14px; font-size:14px; font-family:'DM Sans',sans-serif; color:var(--text); outline:none; transition:all 0.2s; width:100%; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(108,99,255,0.1); }
+.form-input::placeholder, .form-textarea::placeholder { color:var(--text-dim); }
+.form-select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%237a7a99' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center; padding-right:32px; cursor:pointer; }
+.form-select option { background:var(--surface2); }
+.form-textarea { resize:vertical; min-height:160px; line-height:1.6; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.btn-submit { background:var(--accent); color:white; flex:1; justify-content:center; }
+.btn-submit:hover { background:#7c74ff; }
+.btn-submit:disabled { opacity:0.5; cursor:not-allowed; }
+.submit-success { display:none; align-items:center; gap:6px; color:#6ee7b7; font-size:13px; }
+.submit-success.show { display:flex; }
+.btn-add { background:rgba(108,99,255,0.12); border:1px solid rgba(108,99,255,0.25); color:var(--accent); padding:8px 16px; border-radius:8px; font-size:13px; font-family:'DM Sans',sans-serif; font-weight:500; cursor:pointer; transition:all 0.15s; display:flex; align-items:center; gap:7px; }
+.btn-add:hover { background:rgba(108,99,255,0.2); }
 </style>
 </head>
 <body>
 <header>
   <div class="logo"><div class="logo-dot"></div>TemplateHub</div>
-  <div class="header-stats">
+  <div style="display:flex;align-items:center;gap:20px;"><div class="header-stats">
     <span><strong id="total-count">—</strong> шаблонів</span>
     <span id="lang-count-wrap" style="display:none"><strong id="lang-count">—</strong> мов</span>
     <span><strong id="cat-count">—</strong> категорій</span>
   </div>
+<button class="btn-add" id="open-drawer"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Додати шаблон</button></div>
 </header>
 <div class="hero">
   <div class="hero-label">Customer Support · Email Templates</div>
@@ -391,6 +420,131 @@ document.getElementById('copy-body').addEventListener('click', () => { if (curre
 document.getElementById('copy-subject').addEventListener('click', () => { if (currentTemplate) copyText(String(currentTemplate.subject||'')); });
 
 loadData();
+
+// --- DRAWER ---
+function openDrawer() {
+  // Populate categories
+  const sel = document.getElementById('f-category');
+  sel.innerHTML = '<option value="">Оберіть категорію</option>';
+  categories.forEach(cat => {
+    const opt = document.createElement('option');
+    opt.value = cat; opt.textContent = cat;
+    sel.appendChild(opt);
+  });
+  document.getElementById('drawer-overlay').classList.add('open');
+}
+
+function closeDrawer() {
+  document.getElementById('drawer-overlay').classList.remove('open');
+}
+
+function resetForm() {
+  ['f-name','f-category','f-language','f-author','f-subject','f-body'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('submit-success').classList.remove('show');
+}
+
+document.getElementById('open-drawer').addEventListener('click', openDrawer);
+document.getElementById('drawer-close').addEventListener('click', () => { closeDrawer(); resetForm(); });
+document.getElementById('drawer-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('drawer-overlay')) { closeDrawer(); resetForm(); }
+});
+
+document.getElementById('submit-btn').addEventListener('click', async () => {
+  const name = document.getElementById('f-name').value.trim();
+  const category = document.getElementById('f-category').value;
+  const language = document.getElementById('f-language').value;
+  const author = document.getElementById('f-author').value.trim();
+  const subject = document.getElementById('f-subject').value.trim();
+  const body = document.getElementById('f-body').value.trim();
+
+  if (!name || !category || !language || !author || !body) {
+    alert('Будь ласка, заповни всі обовʼязкові поля (*)');
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Збереження...';
+
+  try {
+    await fetch(API, {
+      method: 'POST',
+      body: JSON.stringify({ name, category, language, author, subject, body })
+    });
+    document.getElementById('submit-success').classList.add('show');
+    resetForm();
+    setTimeout(() => {
+      closeDrawer();
+      loadData(); // refresh templates
+    }, 1500);
+  } catch (e) {
+    alert('Помилка при збереженні. Спробуй ще раз.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Додати шаблон';
+  }
+});
+
 </script>
+
+<!-- DRAWER -->
+<div class="drawer-overlay" id="drawer-overlay">
+  <div class="drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">Новий шаблон</div>
+      <button class="drawer-close" id="drawer-close">✕</button>
+    </div>
+    <div class="drawer-body">
+      <div class="form-group">
+        <label class="form-label">Назва шаблону *</label>
+        <input type="text" class="form-input" id="f-name" placeholder="Наприклад: Follow-up після звернення">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Категорія *</label>
+          <select class="form-select" id="f-category">
+            <option value="">Оберіть категорію</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Мова *</label>
+          <select class="form-select" id="f-language">
+            <option value="">Оберіть мову</option>
+            <option value="UA">UA</option>
+            <option value="EN">EN</option>
+            <option value="FR">FR</option>
+            <option value="DE">DE</option>
+            <option value="PL">PL</option>
+            <option value="ES">ES</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Автор *</label>
+        <input type="text" class="form-input" id="f-author" placeholder="Твоє імʼя">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Тема листа (subject)</label>
+        <input type="text" class="form-input" id="f-subject" placeholder="Наприклад: Ваше звернення №{{номер}} — оновлення">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Текст листа (body) *</label>
+        <textarea class="form-textarea" id="f-body" placeholder="Доброго дня, {{імʼя_клієнта}}!&#10;&#10;..."></textarea>
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <button class="btn btn-submit" id="submit-btn">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        Додати шаблон
+      </button>
+      <div class="submit-success" id="submit-success">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        Додано!
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
