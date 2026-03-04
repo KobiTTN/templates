@@ -7,30 +7,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0f0f12;
-  --surface: #18181f;
-  --surface2: #22222d;
-  --border: #2e2e3d;
-  --accent: #6c63ff;
-  --accent2: #ff6584;
-  --text: #e8e8f0;
-  --text-muted: #7a7a99;
-  --text-dim: #4a4a66;
-  --radius: 12px;
+  --bg: #0f0f12; --surface: #18181f; --surface2: #22222d; --border: #2e2e3d;
+  --accent: #6c63ff; --accent2: #ff6584; --text: #e8e8f0;
+  --text-muted: #7a7a99; --text-dim: #4a4a66; --radius: 12px;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
 body::before { content:''; position:fixed; inset:0; background-image:linear-gradient(rgba(108,99,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,0.03) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
-
-/* HEADER */
 header { position:relative; z-index:10; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--border); background:rgba(15,15,18,0.9); backdrop-filter:blur(12px); }
 .logo { font-family:'Syne',sans-serif; font-size:18px; font-weight:800; letter-spacing:-0.5px; display:flex; align-items:center; gap:10px; }
 .logo-dot { width:8px; height:8px; background:var(--accent); border-radius:50%; box-shadow:0 0 12px var(--accent); animation:pulse 2s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.75)} }
 .header-stats { display:flex; gap:20px; font-size:12px; color:var(--text-muted); }
 .header-stats span strong { color:var(--text); font-weight:500; }
-
-/* HERO */
 .hero { position:relative; z-index:1; padding:48px 32px 36px; text-align:center; }
 .hero-label { display:inline-block; font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--accent); background:rgba(108,99,255,0.1); border:1px solid rgba(108,99,255,0.2); padding:5px 14px; border-radius:20px; margin-bottom:18px; }
 .hero h1 { font-family:'Syne',sans-serif; font-size:clamp(28px,4vw,48px); font-weight:800; line-height:1.05; letter-spacing:-1.5px; margin-bottom:12px; }
@@ -41,11 +30,7 @@ header { position:relative; z-index:10; padding:18px 32px; display:flex; align-i
 #search { width:100%; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:14px 18px 14px 46px; font-size:15px; font-family:'DM Sans',sans-serif; color:var(--text); outline:none; transition:all 0.2s; }
 #search:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(108,99,255,0.12); }
 #search::placeholder { color:var(--text-dim); }
-
-/* LAYOUT */
 .main { position:relative; z-index:1; display:grid; grid-template-columns:220px 1fr; }
-
-/* SIDEBAR */
 .sidebar { padding:28px 20px; border-right:1px solid var(--border); position:sticky; top:0; height:fit-content; }
 .filter-section { margin-bottom:28px; }
 .filter-title { font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--text-dim); margin-bottom:10px; }
@@ -58,30 +43,18 @@ header { position:relative; z-index:10; padding:18px 32px; display:flex; align-i
 .lang-btn { padding:5px 11px; border-radius:6px; border:1px solid var(--border); background:transparent; color:var(--text-muted); font-size:12px; font-weight:500; font-family:'DM Sans',sans-serif; cursor:pointer; transition:all 0.15s; }
 .lang-btn:hover { border-color:var(--accent); color:var(--accent); }
 .lang-btn.active { background:var(--accent); border-color:var(--accent); color:white; }
-
-/* CONTENT */
 .content { padding:28px 32px; min-height:60vh; }
-
-/* FEATURED */
 .featured-section { margin-bottom:36px; }
 .section-title { font-family:'Syne',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.5px; color:var(--text-muted); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
 .section-title::before { content:''; display:inline-block; width:3px; height:14px; background:linear-gradient(180deg,var(--accent),var(--accent2)); border-radius:2px; }
 .featured-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px; }
-.card-featured { border-color:rgba(108,99,255,0.25); background:linear-gradient(135deg,rgba(108,99,255,0.06),rgba(255,101,132,0.03)); }
+.card-featured { border-color:rgba(108,99,255,0.25) !important; background:linear-gradient(135deg,rgba(108,99,255,0.06),rgba(255,101,132,0.03)) !important; }
 .card-featured::after { content:'★'; position:absolute; top:12px; right:12px; font-size:10px; color:var(--accent); opacity:0.6; }
-
-/* DIVIDER */
 .divider { border:none; border-top:1px solid var(--border); margin:0 0 28px; }
-
-/* RESULTS */
 .content-header { display:flex; align-items:center; margin-bottom:18px; }
 .results-info { font-size:13px; color:var(--text-muted); }
 .results-info strong { color:var(--text); }
-
-/* GRID */
 .templates-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:14px; }
-
-/* CARD */
 .card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:18px; cursor:pointer; transition:all 0.2s; position:relative; overflow:hidden; }
 .card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--accent),var(--accent2)); opacity:0; transition:opacity 0.2s; }
 .card:hover { border-color:rgba(108,99,255,0.35); transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.35); }
@@ -94,33 +67,17 @@ header { position:relative; z-index:10; padding:18px 32px; display:flex; align-i
 .card-preview { font-size:12px; color:var(--text-muted); line-height:1.55; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; margin-bottom:14px; font-weight:300; }
 .card-footer { display:flex; align-items:center; justify-content:space-between; }
 .card-author { font-size:11px; color:var(--text-dim); }
-
-/* CATEGORY TAGS */
 .card-category { font-size:11px; padding:3px 9px; border-radius:5px; font-weight:500; }
-.cat-Повернення       { background:rgba(108,99,255,0.12); color:#9d97ff; }
-.cat-Зміни            { background:rgba(255,101,132,0.12); color:#ff8fa3; }
-.cat-Реєстрація-на-рейс { background:rgba(52,211,153,0.12); color:#6ee7b7; }
-.cat-Виписка-квитків  { background:rgba(251,191,36,0.12); color:#fcd34d; }
-.cat-Багаж            { background:rgba(96,165,250,0.12); color:#93c5fd; }
-.cat-Компенсації      { background:rgba(244,114,182,0.12); color:#f9a8d4; }
-.cat-default          { background:rgba(148,163,184,0.12); color:#94a3b8; }
-
-/* LOADING */
+.cat-default { background:rgba(148,163,184,0.12); color:#94a3b8; }
 .loading { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:80px 20px; gap:16px; color:var(--text-muted); font-size:14px; }
 .spinner { width:32px; height:32px; border:2px solid var(--border); border-top-color:var(--accent); border-radius:50%; animation:spin 0.8s linear infinite; }
 @keyframes spin { to { transform:rotate(360deg); } }
-
-/* EMPTY */
 .empty { grid-column:1/-1; text-align:center; padding:80px 20px; color:var(--text-dim); }
 .empty-icon { font-size:40px; margin-bottom:14px; }
 .empty h3 { font-family:'Syne',sans-serif; color:var(--text-muted); margin-bottom:6px; font-size:16px; }
 .empty p { font-size:13px; }
-
-/* ERROR */
 .error-banner { background:rgba(255,101,132,0.08); border:1px solid rgba(255,101,132,0.2); border-radius:10px; padding:14px 18px; font-size:13px; color:#ff8fa3; margin-bottom:24px; display:none; }
 .error-banner.show { display:block; }
-
-/* MODAL */
 .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); backdrop-filter:blur(10px); z-index:100; display:flex; align-items:center; justify-content:center; padding:20px; opacity:0; pointer-events:none; transition:opacity 0.2s; }
 .modal-overlay.open { opacity:1; pointer-events:all; }
 .modal { background:var(--surface); border:1px solid var(--border); border-radius:16px; width:100%; max-width:620px; max-height:88vh; overflow-y:auto; transform:translateY(16px); transition:transform 0.25s; }
@@ -143,14 +100,12 @@ header { position:relative; z-index:10; padding:18px 32px; display:flex; align-i
 .btn-secondary:hover { color:var(--text); border-color:var(--text-muted); }
 .copy-success { display:none; align-items:center; gap:5px; color:#6ee7b7; font-size:12px; }
 .copy-success.show { display:flex; }
-
 ::-webkit-scrollbar { width:5px; }
 ::-webkit-scrollbar-track { background:transparent; }
 ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo"><div class="logo-dot"></div>TemplateHub</div>
   <div class="header-stats">
@@ -159,7 +114,6 @@ header { position:relative; z-index:10; padding:18px 32px; display:flex; align-i
     <span><strong id="cat-count">—</strong> категорій</span>
   </div>
 </header>
-
 <div class="hero">
   <div class="hero-label">Customer Support · Email Templates</div>
   <h1>Знайди потрібний<br><span>шаблон за секунди</span></h1>
@@ -169,7 +123,6 @@ header { position:relative; z-index:10; padding:18px 32px; display:flex; align-i
     <input type="text" id="search" placeholder="Пошук по назві, темі або тексту...">
   </div>
 </div>
-
 <div class="main">
   <aside class="sidebar">
     <div class="filter-section">
@@ -185,28 +138,19 @@ header { position:relative; z-index:10; padding:18px 32px; display:flex; align-i
       </div>
     </div>
   </aside>
-
   <main class="content">
     <div id="error-banner" class="error-banner"></div>
-
-    <!-- Featured -->
     <div id="featured-section" class="featured-section" style="display:none">
       <div class="section-title">Популярні</div>
       <div class="featured-grid" id="featured-grid"></div>
       <hr class="divider" style="margin-top:28px;">
     </div>
-
-    <!-- All templates -->
     <div class="content-header">
       <div class="results-info">Показано <strong id="shown-count">—</strong> шаблонів</div>
     </div>
-    <div id="grid">
-      <div class="loading"><div class="spinner"></div>Завантаження шаблонів...</div>
-    </div>
+    <div id="grid"><div class="loading"><div class="spinner"></div>Завантаження шаблонів...</div></div>
   </main>
 </div>
-
-<!-- Modal -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal">
     <div class="modal-header">
@@ -239,10 +183,8 @@ header { position:relative; z-index:10; padding:18px 32px; display:flex; align-i
     </div>
   </div>
 </div>
-
 <script>
-const SHEET_ID = '1mbv54soItZF632tyxdNTs5OBl6aTZwK-MBvBsMKzE28';
-const BASE_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=`;
+const API = 'https://script.google.com/macros/s/AKfycbxhhNjXL4rbZF-iGKfpNr8ofmd8pjuVseT_FFeJeTsaYpjwcMBMK-2m0JsjQec6WPtLAw/exec';
 
 let allTemplates = [];
 let categories = [];
@@ -251,89 +193,48 @@ let activeLang = 'all';
 let searchQuery = '';
 let currentTemplate = null;
 
-// --- CSV PARSER ---
-function parseCSV(text) {
-  const lines = text.trim().split('\n');
-  if (lines.length < 2) return [];
-  const headers = parseCSVRow(lines[0]);
-  return lines.slice(1).map(line => {
-    const vals = parseCSVRow(line);
-    const obj = {};
-    headers.forEach((h, i) => {
-      obj[h.trim().replace(/^"|"$/g, '')] = (vals[i] || '').replace(/^"|"$/g, '').trim();
-    });
-    return obj;
-  }).filter(r => r.id);
-}
-
-function parseCSVRow(line) {
-  const result = [];
-  let cur = '';
-  let inQuotes = false;
-  for (let i = 0; i < line.length; i++) {
-    const ch = line[i];
-    if (ch === '"') {
-      if (inQuotes && line[i+1] === '"') { cur += '"'; i++; }
-      else inQuotes = !inQuotes;
-    } else if (ch === ',' && !inQuotes) {
-      result.push(cur); cur = '';
-    } else {
-      cur += ch;
-    }
-  }
-  result.push(cur);
-  return result;
-}
-
-// --- FETCH ---
 async function fetchSheet(sheetName) {
-  const url = BASE_URL + encodeURIComponent(sheetName);
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return await res.text();
+  const res = await fetch(API + '?sheet=' + encodeURIComponent(sheetName));
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const json = await res.json();
+  return json.data || [];
 }
 
 async function loadData() {
   try {
-    const [tmplCSV, catCSV] = await Promise.all([
+    const [templates, cats] = await Promise.all([
       fetchSheet('templates'),
       fetchSheet('categories')
     ]);
-
-    categories = parseCSV(catCSV).map(r => r.name).filter(Boolean);
-    const raw = parseCSV(tmplCSV);
-    allTemplates = raw.filter(r => r.status === 'active');
-
+    categories = cats.map(r => r.name).filter(Boolean);
+    allTemplates = templates.filter(r => String(r.status).toLowerCase() === 'active');
     buildSidebar();
     updateHeaderStats();
     render();
   } catch (e) {
-    showError('Не вдалося завантажити шаблони. Перевір що таблиця відкрита для всіх по посиланню. (' + e.message + ')');
+    showError('Не вдалося завантажити шаблони. (' + e.message + ')');
     document.getElementById('grid').innerHTML = '';
   }
 }
 
 function showError(msg) {
   const el = document.getElementById('error-banner');
-  el.textContent = '⚠️ ' + msg;
+  el.textContent = 'помилка: ' + msg;
   el.classList.add('show');
 }
 
-// --- SIDEBAR ---
 function buildSidebar() {
-  // Categories
   const wrap = document.getElementById('cat-filters');
   const langs = [...new Set(allTemplates.map(t => t.language).filter(Boolean))].sort();
 
-  wrap.innerHTML = `<button class="filter-btn active" data-cat="all">Всі <span class="filter-count" id="count-all">0</span></button>`;
+  wrap.innerHTML = '<button class="filter-btn active" data-cat="all">Всі <span class="filter-count" id="count-all">0</span></button>';
   categories.forEach(cat => {
     const btn = document.createElement('button');
     btn.className = 'filter-btn';
     btn.dataset.cat = cat;
-    btn.innerHTML = `${cat} <span class="filter-count">0</span>`;
+    btn.innerHTML = cat + ' <span class="filter-count">0</span>';
     wrap.appendChild(btn);
   });
-
   wrap.querySelectorAll('[data-cat]').forEach(btn => {
     btn.addEventListener('click', () => {
       activeCategory = btn.dataset.cat;
@@ -343,9 +244,8 @@ function buildSidebar() {
     });
   });
 
-  // Languages
   const langWrap = document.getElementById('lang-filters');
-  langWrap.innerHTML = `<button class="lang-btn active" data-lang="all">Всі</button>`;
+  langWrap.innerHTML = '<button class="lang-btn active" data-lang="all">Всі</button>';
   langs.forEach(lang => {
     const btn = document.createElement('button');
     btn.className = 'lang-btn';
@@ -353,7 +253,6 @@ function buildSidebar() {
     btn.textContent = lang;
     langWrap.appendChild(btn);
   });
-
   langWrap.querySelectorAll('[data-lang]').forEach(btn => {
     btn.addEventListener('click', () => {
       activeLang = btn.dataset.lang;
@@ -372,30 +271,51 @@ function updateHeaderStats() {
   document.getElementById('cat-count').textContent = categories.length;
 }
 
-// --- FILTER ---
 function getFiltered() {
   return allTemplates.filter(t => {
     const matchCat = activeCategory === 'all' || t.category === activeCategory;
     const matchLang = activeLang === 'all' || t.language === activeLang;
     const q = searchQuery.toLowerCase();
     const matchSearch = !q ||
-      (t.name || '').toLowerCase().includes(q) ||
-      (t.subject || '').toLowerCase().includes(q) ||
-      (t.body || '').toLowerCase().includes(q);
+      String(t.name||'').toLowerCase().includes(q) ||
+      String(t.subject||'').toLowerCase().includes(q) ||
+      String(t.body||'').toLowerCase().includes(q);
     return matchCat && matchLang && matchSearch;
   });
 }
 
-// --- RENDER ---
+function catClass(cat) {
+  if (!cat) return 'cat-default';
+  const map = {
+    'Повернення':'#9d97ff','Зміни':'#ff8fa3','Реєстрація на рейс':'#6ee7b7',
+    'Виписка квитків':'#fcd34d','Багаж':'#93c5fd','Компенсації':'#f9a8d4'
+  };
+  const bgMap = {
+    'Повернення':'rgba(108,99,255,0.12)','Зміни':'rgba(255,101,132,0.12)',
+    'Реєстрація на рейс':'rgba(52,211,153,0.12)','Виписка квитків':'rgba(251,191,36,0.12)',
+    'Багаж':'rgba(96,165,250,0.12)','Компенсації':'rgba(244,114,182,0.12)'
+  };
+  return map[cat] ? 'cat-custom" style="color:' + map[cat] + ';background:' + (bgMap[cat]||'rgba(148,163,184,0.12)') : 'cat-default';
+}
+
+function cardHTML(t, isFeatured) {
+  const cc = catClass(t.category);
+  return '<div class="card' + (isFeatured?' card-featured':'') + '" data-id="' + t.id + '">' +
+    '<div class="card-top"><div class="card-name">' + (t.name||'—') + '</div><span class="card-lang">' + (t.language||'') + '</span></div>' +
+    '<div class="card-subject"><em>Тема: </em>' + (t.subject||'') + '</div>' +
+    '<div class="card-preview">' + String(t.body||'').replace(/\n/g,' ') + '</div>' +
+    '<div class="card-footer"><span class="card-category ' + cc + '">' + (t.category||'') + '</span><span class="card-author">' + (t.author||'') + '</span></div>' +
+    '</div>';
+}
+
 function render() {
   const filtered = getFiltered();
   const featured = allTemplates.filter(t =>
-    t.featured === 'TRUE' &&
+    String(t.featured).toUpperCase() === 'TRUE' &&
     (activeLang === 'all' || t.language === activeLang) &&
     (activeCategory === 'all' || t.category === activeCategory)
   );
 
-  // Update counts in sidebar
   document.getElementById('count-all').textContent =
     allTemplates.filter(t => activeLang === 'all' || t.language === activeLang).length;
 
@@ -403,14 +323,12 @@ function render() {
     if (btn.dataset.cat === 'all') return;
     const cnt = btn.querySelector('.filter-count');
     if (cnt) cnt.textContent = allTemplates.filter(t =>
-      t.category === btn.dataset.cat &&
-      (activeLang === 'all' || t.language === activeLang)
+      t.category === btn.dataset.cat && (activeLang === 'all' || t.language === activeLang)
     ).length;
   });
 
   document.getElementById('shown-count').textContent = filtered.length;
 
-  // Featured section — hide during search
   const featuredSection = document.getElementById('featured-section');
   if (featured.length > 0 && !searchQuery && activeCategory === 'all') {
     featuredSection.style.display = '';
@@ -422,50 +340,24 @@ function render() {
     featuredSection.style.display = 'none';
   }
 
-  // Main grid
   const grid = document.getElementById('grid');
   if (!filtered.length) {
-    grid.innerHTML = `<div class="empty">
-      <div class="empty-icon">🔍</div>
-      <h3>Нічого не знайдено</h3>
-      <p>Спробуйте змінити фільтри або пошуковий запит</p>
-    </div>`;
+    grid.innerHTML = '<div class="empty"><div class="empty-icon">🔍</div><h3>Нічого не знайдено</h3><p>Спробуйте змінити фільтри або пошуковий запит</p></div>';
     return;
   }
-
-  grid.innerHTML = `<div class="templates-grid">${filtered.map(t => cardHTML(t, false)).join('')}</div>`;
+  grid.innerHTML = '<div class="templates-grid">' + filtered.map(t => cardHTML(t, false)).join('') + '</div>';
   grid.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => openModal(card.dataset.id));
   });
 }
 
-function catClass(cat) {
-  if (!cat) return 'cat-default';
-  return 'cat-' + cat.replace(/\s+/g, '-');
-}
-
-function cardHTML(t, isFeatured) {
-  return `<div class="card${isFeatured ? ' card-featured' : ''}" data-id="${t.id}">
-    <div class="card-top">
-      <div class="card-name">${t.name || '—'}</div>
-      <span class="card-lang">${t.language || ''}</span>
-    </div>
-    <div class="card-subject"><em>Тема: </em>${t.subject || ''}</div>
-    <div class="card-preview">${(t.body || '').replace(/\n/g,' ')}</div>
-    <div class="card-footer">
-      <span class="card-category ${catClass(t.category)}">${t.category || ''}</span>
-      <span class="card-author">${t.author || ''}</span>
-    </div>
-  </div>`;
-}
-
-// --- MODAL ---
 function openModal(id) {
-  currentTemplate = allTemplates.find(t => t.id === id);
+  currentTemplate = allTemplates.find(t => String(t.id) === String(id));
   if (!currentTemplate) return;
   document.getElementById('modal-title').textContent = currentTemplate.name || '';
   const catEl = document.getElementById('modal-category');
-  catEl.className = `card-category ${catClass(currentTemplate.category)}`;
+  const cc = catClass(currentTemplate.category);
+  catEl.className = 'card-category ' + cc;
   catEl.textContent = currentTemplate.category || '';
   document.getElementById('modal-lang').textContent = currentTemplate.language || '';
   document.getElementById('modal-author').textContent = currentTemplate.author ? '· ' + currentTemplate.author : '';
@@ -475,18 +367,13 @@ function openModal(id) {
   document.getElementById('modal-overlay').classList.add('open');
 }
 
-function closeModal() {
-  document.getElementById('modal-overlay').classList.remove('open');
-}
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
 
 function copyText(text) {
   navigator.clipboard.writeText(text).then(showCopied).catch(() => {
     const ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
     showCopied();
   });
 }
@@ -497,23 +384,12 @@ function showCopied() {
   setTimeout(() => el.classList.remove('show'), 2200);
 }
 
-// --- EVENTS ---
-document.getElementById('search').addEventListener('input', e => {
-  searchQuery = e.target.value;
-  render();
-});
+document.getElementById('search').addEventListener('input', e => { searchQuery = e.target.value; render(); });
 document.getElementById('modal-close').addEventListener('click', closeModal);
-document.getElementById('modal-overlay').addEventListener('click', e => {
-  if (e.target === document.getElementById('modal-overlay')) closeModal();
-});
-document.getElementById('copy-body').addEventListener('click', () => {
-  if (currentTemplate) copyText(currentTemplate.body || '');
-});
-document.getElementById('copy-subject').addEventListener('click', () => {
-  if (currentTemplate) copyText(currentTemplate.subject || '');
-});
+document.getElementById('modal-overlay').addEventListener('click', e => { if (e.target === document.getElementById('modal-overlay')) closeModal(); });
+document.getElementById('copy-body').addEventListener('click', () => { if (currentTemplate) copyText(String(currentTemplate.body||'')); });
+document.getElementById('copy-subject').addEventListener('click', () => { if (currentTemplate) copyText(String(currentTemplate.subject||'')); });
 
-// --- INIT ---
 loadData();
 </script>
 </body>
