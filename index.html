@@ -212,6 +212,66 @@ header { position:relative; z-index:10; padding:18px 32px; display:flex; align-i
     </div>
   </div>
 </div>
+
+<!-- DRAWER -->
+<div class="drawer-overlay" id="drawer-overlay">
+  <div class="drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">Новий шаблон</div>
+      <button class="drawer-close" id="drawer-close">✕</button>
+    </div>
+    <div class="drawer-body">
+      <div class="form-group">
+        <label class="form-label">Назва шаблону *</label>
+        <input type="text" class="form-input" id="f-name" placeholder="Наприклад: Follow-up після звернення">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Категорія *</label>
+          <select class="form-select" id="f-category">
+            <option value="">Оберіть категорію</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Мова *</label>
+          <select class="form-select" id="f-language">
+            <option value="">Оберіть мову</option>
+            <option value="UA">UA</option>
+            <option value="EN">EN</option>
+            <option value="FR">FR</option>
+            <option value="DE">DE</option>
+            <option value="PL">PL</option>
+            <option value="ES">ES</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Автор *</label>
+        <input type="text" class="form-input" id="f-author" placeholder="Твоє імʼя">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Тема листа (subject)</label>
+        <input type="text" class="form-input" id="f-subject" placeholder="Наприклад: Ваше звернення №{{номер}} — оновлення">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Текст листа (body) *</label>
+        <textarea class="form-textarea" id="f-body" placeholder="Доброго дня, {{імʼя_клієнта}}!&#10;&#10;..."></textarea>
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <button class="btn btn-submit" id="submit-btn">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        Додати шаблон
+      </button>
+      <div class="submit-success" id="submit-success">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        Додано!
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script>
 const API = 'https://script.google.com/macros/s/AKfycbxhhNjXL4rbZF-iGKfpNr8ofmd8pjuVseT_FFeJeTsaYpjwcMBMK-2m0JsjQec6WPtLAw/exec';
 
@@ -489,62 +549,4 @@ document.getElementById('submit-btn').addEventListener('click', async () => {
 
 </script>
 
-<!-- DRAWER -->
-<div class="drawer-overlay" id="drawer-overlay">
-  <div class="drawer">
-    <div class="drawer-header">
-      <div class="drawer-title">Новий шаблон</div>
-      <button class="drawer-close" id="drawer-close">✕</button>
-    </div>
-    <div class="drawer-body">
-      <div class="form-group">
-        <label class="form-label">Назва шаблону *</label>
-        <input type="text" class="form-input" id="f-name" placeholder="Наприклад: Follow-up після звернення">
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Категорія *</label>
-          <select class="form-select" id="f-category">
-            <option value="">Оберіть категорію</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="form-label">Мова *</label>
-          <select class="form-select" id="f-language">
-            <option value="">Оберіть мову</option>
-            <option value="UA">UA</option>
-            <option value="EN">EN</option>
-            <option value="FR">FR</option>
-            <option value="DE">DE</option>
-            <option value="PL">PL</option>
-            <option value="ES">ES</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Автор *</label>
-        <input type="text" class="form-input" id="f-author" placeholder="Твоє імʼя">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Тема листа (subject)</label>
-        <input type="text" class="form-input" id="f-subject" placeholder="Наприклад: Ваше звернення №{{номер}} — оновлення">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Текст листа (body) *</label>
-        <textarea class="form-textarea" id="f-body" placeholder="Доброго дня, {{імʼя_клієнта}}!&#10;&#10;..."></textarea>
-      </div>
-    </div>
-    <div class="drawer-footer">
-      <button class="btn btn-submit" id="submit-btn">
-        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-        Додати шаблон
-      </button>
-      <div class="submit-success" id="submit-success">
-        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-        Додано!
-      </div>
-    </div>
-  </div>
-</div>
 </body>
-</html>
